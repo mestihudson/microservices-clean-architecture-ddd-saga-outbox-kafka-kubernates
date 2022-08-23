@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  dev:
+    image: maven:3-eclipse-temurin-17-alpine
+    volumes:
+    - .:/ws
+    - $HOME/.m2:/root/.m2
+    working_dir: /ws
+    entrypoint: sh -c 'tail -f'

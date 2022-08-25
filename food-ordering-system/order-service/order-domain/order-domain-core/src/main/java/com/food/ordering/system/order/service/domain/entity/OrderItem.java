@@ -6,6 +6,7 @@ import com.food.ordering.system.domain.valueobject.*;
 import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 
 @Getter
@@ -28,39 +29,14 @@ public class OrderItem extends BaseEntity<OrderItemId> {
     return new OrderItemBuilder();
   }
 
+  @NoArgsConstructor
+  @Accessors(fluent = true)
   public static final class OrderItemBuilder {
     private OrderItemId orderItemId;
     private Product product;
     private int quantity;
     private Money price;
     private Money subTotal;
-
-    private OrderItemBuilder() {}
-
-    public OrderItemBuilder orderItemId(final OrderItemId val) {
-      orderItemId = val;
-      return this;
-    }
-
-    public OrderItemBuilder product(final Product val) {
-      product = val;
-      return this;
-    }
-
-    public OrderItemBuilder quantity(final int val) {
-      quantity = val;
-      return this;
-    }
-
-    public OrderItemBuilder price(final Money val) {
-      price = val;
-      return this;
-    }
-
-    public OrderItemBuilder subTotal(final Money val) {
-      subTotal = val;
-      return this;
-    }
 
     public OrderItem build() {
       return new OrderItem(this);

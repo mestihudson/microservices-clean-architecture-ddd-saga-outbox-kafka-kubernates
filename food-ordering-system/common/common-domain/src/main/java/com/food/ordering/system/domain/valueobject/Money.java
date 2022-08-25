@@ -1,9 +1,9 @@
 package com.food.ordering.system.domain.valueobject;
 
 
-import lombok.*;
-
 import java.math.*;
+
+import lombok.*;
 
 
 @Getter

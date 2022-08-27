@@ -9,6 +9,6 @@ while true; do
   echo '--------------------------------------------------------------------' &&
   echo '' &&
   sleep 1 &&
-  inotifywait -m --exclude "target" "$place" -r -e modify|mvn ${rest:-test -o}
+  inotifywait -m --exclude "target" "$place" -r -e modify|mvn ${rest:-test}
 done
 cd -

@@ -2,7 +2,7 @@ package com.food.ordering.system.order.service.domain.entity;
 
 
 import com.food.ordering.system.domain.entity.AggregateRoot;
-import com.food.ordering.system.domain.valueobject.*;
+import com.food.ordering.system.domain.valueobject.RestaurantId;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.food.ordering.system.order.service.domain.valueobject.*;
 
@@ -27,8 +27,8 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
     return new RestaurantBuilder();
   }
 
-  @NoArgsConstructor
   @Accessors(fluent = true)
+  @Setter
   public static final class RestaurantBuilder {
     private RestaurantId restaurantId;
     private List<Product> products;

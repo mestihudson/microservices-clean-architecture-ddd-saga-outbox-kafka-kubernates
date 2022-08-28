@@ -2,8 +2,8 @@ package com.food.ordering.system.order.service.domain.entity;
 
 
 import com.food.ordering.system.domain.entity.BaseEntity;
-import com.food.ordering.system.domain.valueobject.*;
-import com.food.ordering.system.order.service.domain.valueobject.ProductId;
+import com.food.ordering.system.domain.valueobject.Money;
+import com.food.ordering.system.domain.valueobject.ProductId;
 
 import lombok.*;
 
@@ -18,6 +18,10 @@ public class Product extends BaseEntity<ProductId> {
     super.setId(productId);
     this.name = name;
     this.price = price;
+  }
+
+  public Product(final ProductId productId) {
+    this(productId, null, null);
   }
 
   public void updateWithConfirmedNameAndPrice(

@@ -14,7 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CreateOrderCommand {
   @NotNull
-  private final UUID custumerId;
+  private final UUID customerId;
   @NotNull
   private final UUID restaurantId;
   @NotNull

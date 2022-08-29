@@ -40,7 +40,7 @@ public class OrderItem extends BaseEntity<OrderItemId> {
     return new OrderItemBuilder();
   }
 
-  @NoArgsConstructor
+  @Setter
   @Accessors(fluent = true)
   public static final class OrderItemBuilder {
     private OrderItemId orderItemId;

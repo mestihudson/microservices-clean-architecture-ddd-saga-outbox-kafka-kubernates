@@ -138,7 +138,7 @@ public class Order extends AggregateRoot<OrderId> {
     return new OrderBuilder();
   }
 
-  @NoArgsConstructor
+  @Setter
   @Accessors(fluent = true)
   public static final class OrderBuilder {
     private OrderId orderId;

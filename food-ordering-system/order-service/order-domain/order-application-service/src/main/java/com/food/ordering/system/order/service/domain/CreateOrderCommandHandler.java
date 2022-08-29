@@ -4,6 +4,7 @@ package com.food.ordering.system.order.service.domain;
 import com.food.ordering.system.order.service.domain.dto.create.*;
 import com.food.ordering.system.order.service.domain.entity.*;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
+import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
 import com.food.ordering.system.order.service.domain.ports.output.repository.*;
 
@@ -30,7 +31,11 @@ public class CreateOrderCommandHandler {
   public CreateOrderResponse createOrder(final CreateOrderCommand createOrderCommand) {
     checkCustomer(createOrderCommand.getCustomerId());
     final Restaurant restaurant = checkRestaurant(createOrderCommand);
-    return null;
+    final Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
+    final OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+    final Order orderResult = saveOrder(order);
+    log.info("Order is created with id: {}", orderResult.getId().getValue());
+    return orderDataMapper.orderToCreateOrderResponse(orderResult);
   }
 
   private Restaurant checkRestaurant(final CreateOrderCommand createOrderCommand) {
@@ -58,5 +63,15 @@ public class CreateOrderCommandHandler {
       log.warn("Could not find customer with customer id: {}", customerId);
       throw new OrderDomainException("Could not find customer with customer id: %s".formatted(customerId));
     }
+  }
+
+  private Order saveOrder(final Order order) {
+    final Order orderResult = orderRepository.save(order);
+    if (orderResult == null) {
+      log.error("Could not save order!");
+      throw new OrderDomainException("Could not save order!");
+    }
+    log.info("Order is saved with id: {}", orderResult.getId().getValue());
+    return orderResult;
   }
 }

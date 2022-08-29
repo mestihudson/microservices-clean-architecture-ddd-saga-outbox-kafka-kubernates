@@ -154,6 +154,5 @@ public class Order extends AggregateRoot<OrderId> {
     public Order build() {
       return new Order(this);
     }
-
   }
 }

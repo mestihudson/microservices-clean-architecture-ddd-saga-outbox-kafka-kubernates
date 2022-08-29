@@ -34,7 +34,22 @@ public class CreateOrderCommandHandler {
   }
 
   private Restaurant checkRestaurant(final CreateOrderCommand createOrderCommand) {
-    return null;
+    final Restaurant restaurant = orderDataMapper
+      .createOrderCommandToRestaurant(createOrderCommand);
+    final Optional<Restaurant> optionalRestaurant = restaurantRepository
+      .findRestaurantInformation(restaurant);
+    if (optionalRestaurant.isEmpty()) {
+      log.warn(
+        "Could not find restaurant with restaurant id: {}",
+        createOrderCommand.getRestaurantId()
+      );
+      throw new OrderDomainException(
+        "Could not find restaurant with restaurant id: %s".formatted(
+          createOrderCommand.getRestaurantId()
+        )
+      );
+    }
+    return optionalRestaurant.get();
   }
 
   private void checkCustomer(final UUID customerId) {

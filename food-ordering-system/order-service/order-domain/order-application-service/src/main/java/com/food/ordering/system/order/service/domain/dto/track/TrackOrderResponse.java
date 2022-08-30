@@ -15,7 +15,7 @@ import lombok.*;
 @AllArgsConstructor
 public class TrackOrderResponse {
   @NotNull
-  private final UUID orderTrackingtId;
+  private final UUID orderTrackingId;
   @NotNull
   private final OrderStatus orderStatus;
   private final List<String> failureMessages;

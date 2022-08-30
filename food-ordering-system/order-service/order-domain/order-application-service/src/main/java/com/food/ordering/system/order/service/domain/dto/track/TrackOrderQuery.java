@@ -13,5 +13,5 @@ import lombok.*;
 @AllArgsConstructor
 public class TrackOrderQuery {
   @NotNull
-  private final UUID orderTrackingtId;
+  private final UUID orderTrackingId;
 }

@@ -7,4 +7,4 @@ services:
     - .:/ws
     - $HOME/.m2:/root/.m2
     working_dir: /ws
-    entrypoint: sh -c 'apt update && apt add graphviz && (cd food-ordering-system && mvn clean com.github.ferstl:depgraph-maven-plugin:aggregate -DcreateImage=true -DreduceEdges=false -Dscope=compile "-Dincludes=com.food.ordering.system*:*"); tail -f'
+    entrypoint: sh -c 'apk update && apk add graphviz && (cd food-ordering-system && mvn clean com.github.ferstl:depgraph-maven-plugin:aggregate -DcreateImage=true -DreduceEdges=false -Dscope=compile "-Dincludes=com.food.ordering.system*:*" && ../watch.sh . test); tail -f'

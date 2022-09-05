@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class CreateOrderCommandHandler {
+public class OrderCreateCommandHandler {
   private final OrderCreateHelper orderCreateHelper;
   private final OrderDataMapper orderDataMapper;
   private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;

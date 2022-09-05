@@ -20,13 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class TrackOrderQueryHandler {
+public class OrderTrackQueryHandler {
   private final OrderDataMapper orderDataMapper;
   private final OrderRepository orderRepository;
 
   @Transactional(readOnly = true)
   public TrackOrderResponse trackOrder(final TrackOrderQuery trackOrderQuery) {
-    Optional<Order> orderResult = orderRepository
+    final Optional<Order> orderResult = orderRepository
       .findByTrackingId(new TrackingId(trackOrderQuery.getOrderTrackingId()));
     if (orderResult.isEmpty()) {
       log.warn(
